@@ -1,3 +1,5 @@
+// tag: easy
+// https://open.kattis.com/problems/hello
 #include <iostream>
 #include <cmath>
 #include <algorithm>
