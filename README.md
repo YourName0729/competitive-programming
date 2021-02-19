@@ -2,4 +2,4 @@
 
 Hi, some free solutions!
 
-I add some related topic on every problem, hope that helps you.
+I add some related topic on most problems, hope that helps you.
