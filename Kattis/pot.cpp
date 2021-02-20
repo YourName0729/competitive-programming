@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/pot
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -12,16 +12,21 @@
 
 using namespace std;
 
+long long Pow(int e, int p) {
+    if (p == 0) return 1;
+    return e * Pow(e, p - 1);
+}
+
 int main() {
-    int n;
+    int n, ans = 0;
     cin >> n;
-    int ans = 0;
     for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+        int d;
+        cin >> d;
+        ans += Pow(d / 10, d % 10);
     }
     cout << ans << '\n';
+    
 
     return 0;
 }

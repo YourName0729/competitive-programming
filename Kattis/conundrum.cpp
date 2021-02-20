@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/conundrum
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,13 +13,15 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
+    string s;
     int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    cin >> s;
+    char c[] = {'P', 'E', 'R'};
+
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] != c[i % 3]) {
+            ans++;
+        }
     }
     cout << ans << '\n';
 

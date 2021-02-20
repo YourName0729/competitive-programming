@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/dicecup
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -12,16 +12,17 @@
 
 using namespace std;
 
+int v[45];
+
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    
+    int a, b;
+    cin >> a >> b;
+
+    for (int i = min(a, b) + 1; i <= max(a, b) + 1; i++) {
+        cout << i << '\n';
     }
-    cout << ans << '\n';
+    
 
     return 0;
 }

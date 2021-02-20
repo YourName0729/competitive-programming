@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/batterup
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,19 @@
 using namespace std;
 
 int main() {
-    int n;
+    
+    int n, cnt = 0, sum = 0;
     cin >> n;
-    int ans = 0;
     for (int i = 0; i < n; i++) {
         int tmp;
         cin >> tmp;
-        if (tmp < 0)    ans++;
+        if (tmp >= 0) {
+            cnt++;
+            sum += tmp;
+        }
     }
-    cout << ans << '\n';
+
+    cout << fixed << sum / double(cnt) << '\n';
 
     return 0;
 }

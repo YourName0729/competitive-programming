@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/timeloop
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,12 @@
 using namespace std;
 
 int main() {
+    
     int n;
     cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    for (int i = 1; i <= n; i++) {
+        cout << i << " Abracadabra\n";
     }
-    cout << ans << '\n';
 
     return 0;
 }

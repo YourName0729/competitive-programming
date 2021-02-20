@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/r2
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,9 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
-    }
-    cout << ans << '\n';
+    int a, b;
+    cin >> a >> b;
+    cout << (b + b - a) << '\n';
 
     return 0;
 }

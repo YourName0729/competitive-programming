@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/romans
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,11 @@
 using namespace std;
 
 int main() {
-    int n;
+    
+    double n;
     cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
-    }
-    cout << ans << '\n';
+    cout <<  (int)round(n * 5280.0 / 4.854) << '\n';
+    
 
     return 0;
 }

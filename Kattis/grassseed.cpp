@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/grassseed
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,17 @@
 using namespace std;
 
 int main() {
+    
+    double c;
     int n;
-    cin >> n;
-    int ans = 0;
+    double a, b, ans = 0;
+
+    cin >> c >> n;
     for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+        cin >> a >> b;
+        ans += a * b;
     }
-    cout << ans << '\n';
+    cout << fixed << c * ans << '\n';
 
     return 0;
 }

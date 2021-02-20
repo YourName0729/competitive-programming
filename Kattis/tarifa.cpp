@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/tarifa
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,16 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
+    
+    int n, x, sum = 0, tmp;
+
+    cin >> x >> n;
     for (int i = 0; i < n; i++) {
-        int tmp;
         cin >> tmp;
-        if (tmp < 0)    ans++;
+        sum += tmp;
     }
-    cout << ans << '\n';
+
+    cout << x + n * x - sum << '\n';
 
     return 0;
 }

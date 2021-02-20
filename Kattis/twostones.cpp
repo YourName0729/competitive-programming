@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/twostones
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -15,13 +15,8 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
-    }
-    cout << ans << '\n';
+    cout << (n % 2 == 0? "Bob" : "Alice") << '\n';
+
 
     return 0;
 }

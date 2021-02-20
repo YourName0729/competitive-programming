@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/lastfactorialdigit
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -12,16 +12,19 @@
 
 using namespace std;
 
+int fac(int d) {
+    if (d == 0) return 1;
+    return d * fac(d - 1);
+}
+
 int main() {
-    int n;
+    int n, d;
     cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    while (n--) {
+        cin >> d;
+        cout << fac(d) % 10 << '\n';
     }
-    cout << ans << '\n';
+
 
     return 0;
 }

@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/pieceofcake2
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,12 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
-    }
-    cout << ans << '\n';
+    int n, a, b;
+    cin >> n >> a >> b;
+    a = max(a, n - a);
+    b = max(b, n - b);
+
+    cout << 4 * a * b << '\n';
 
     return 0;
 }

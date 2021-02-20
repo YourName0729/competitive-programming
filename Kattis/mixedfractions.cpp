@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/mixedfractions
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,11 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    
+    int a, b;
+    while (cin >> a >> b && !(a == 0 && b == 0)) {
+        cout << a / b << ' ' << a % b << " / " << b << '\n';
     }
-    cout << ans << '\n';
 
     return 0;
 }

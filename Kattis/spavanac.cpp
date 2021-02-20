@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/spavanac
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -12,16 +12,16 @@
 
 using namespace std;
 
+map<string, bool> m;
+
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
-    }
-    cout << ans << '\n';
+    int m, s;
+    cin >> m >> s;
+
+    int all = m * 60 + s - 45 + 1440;
+    all %= 1440;
+
+    cout << all / 60 << ' ' << all % 60 << '\n';
 
     return 0;
 }

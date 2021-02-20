@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/qaly
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -14,14 +14,15 @@ using namespace std;
 
 int main() {
     int n;
+    double ans = 0;
+    double a, b;
+
     cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    while (n--) {
+        cin >> a >> b;
+        ans += a * b;
     }
-    cout << ans << '\n';
+    cout << fixed << ans << '\n';
 
     return 0;
 }

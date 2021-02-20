@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/planina
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -15,13 +15,11 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    int ans = 0;
+    int tmp = 2;
     for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+        tmp = 2 * tmp - 1;
     }
-    cout << ans << '\n';
+    cout << tmp * tmp << '\n';
 
     return 0;
 }

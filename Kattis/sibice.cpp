@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/sibice
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,17 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
+    int n, w, h;
+    cin >> n >> w >> h;
     for (int i = 0; i < n; i++) {
         int tmp;
         cin >> tmp;
-        if (tmp < 0)    ans++;
+        if (tmp * tmp <= w * w + h * h) {
+            cout << "DA\n";
+        } else {
+            cout << "NE\n";
+        }
     }
-    cout << ans << '\n';
 
     return 0;
 }

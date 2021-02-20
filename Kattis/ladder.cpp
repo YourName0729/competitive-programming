@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/ladder
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -12,16 +12,15 @@
 
 using namespace std;
 
+int rnd(double d) {
+    if (int(d) == d)    return int(d);
+    return int(d) + 1;
+}
+
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
-    }
-    cout << ans << '\n';
+    double h, v;
+    cin >> h >> v;
+    cout << ceil(h / sin(v * 3.1415926 / 180)) << '\n';
 
     return 0;
 }

@@ -1,5 +1,5 @@
 //
-// https://open.kattis.com/problems/cold
+// https://open.kattis.com/problems/carrots
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -13,15 +13,14 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        if (tmp < 0)    ans++;
+    string s;
+    int n, p;
+    cin >> n >> p;
+    getchar();
+    while (n--) {
+        getline(cin, s);
     }
-    cout << ans << '\n';
+    cout << p << '\n';
 
     return 0;
 }
