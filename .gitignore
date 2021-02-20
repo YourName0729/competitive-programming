@@ -32,7 +32,15 @@
 *.app
 
 # vscode
+.vscode/*
+.vscode/
+/.vscode
 .vscode
+.idea
+
+# pg
+pg/
 
 # creater
 creater.cpp
+former.cpp
