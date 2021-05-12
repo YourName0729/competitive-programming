@@ -1,193 +1,135 @@
-// brute_force
 // https://open.kattis.com/problems/hanjie
-#include <vector>
-#include <algorithm>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <stack>
-#include <cmath>
-#include <map>
-#include <utility>
-#include <queue>
-#include <iomanip>
-#include <deque>
-#include <set>
+#include <bits/stdc++.h>
+#include <ext/pb_ds/tree_policy.hpp>
+#include <ext/pb_ds/assoc_container.hpp>
 
-#define Forcase int __t;cin>>__t;getchar();for(int ___t=1;___t<=__t;___t++)
-#define For(i, n) for(int i=0;i<n;i++)
-#define Fore(e, arr) for(auto e:arr)
+#define For(i, n) for (int i = 0; i < n; ++i)
+#define Forcase int __t = 0; cin >> __t; while (__t--)
+#define ll long long
+#define ar array
 
-#define INF 1e9
-#define EPS 1e-9
-
-using ull = unsigned long long;
-using ll = long long;
 using namespace std;
+using namespace __gnu_pbds;
 
-int r, c;
-vector<int> R[6], C[6];
-bool bd[6][6];
+template<class Type> using indexed_set=tree<Type,null_type,less<Type>,rb_tree_tag,tree_order_statistics_node_update>;
 
-void nxt(int& x, int& y) {
-    if (y == c - 1) {
-        x++;
-        y = 0;
-    } else {
-        y++;
-    }
-}
+const int MOD = 1e9 + 7;
+const int INF = 2147483647;
+const ll IINF = 1e18;
+const double eps = 1e-12;
 
-bool legal(vector<int>& cur, vector<int>& org) {
-    // cout << "legal:\n";
-    // cout << "    ";
-    // For (i, cur.size()) {
-    //     cout << cur[i] << ' ';
-    // }
-    // cout << '\n';
-    // cout << "    ";
-    // For (i, org.size()) {
-    //     cout << org[i] << ' ';
-    // }
-    // cout << '\n';
-
-    if (cur.size() == 0)    return true;
-    if (cur.size() > org.size())    return false;
-    For (i, cur.size() - 1) {
-        if (cur[i] != org[i])   return false;
-    }
-    return cur.back() <= org[cur.size() - 1];
-}
-
-bool match(vector<int>& cur, vector<int>& org) {
-    // cout << "match:\n";
-    // cout << "    ";
-    // For (i, cur.size()) {
-    //     cout << cur[i] << ' ';
-    // }
-    // cout << '\n';
-    // cout << "    ";
-    // For (i, org.size()) {
-    //     cout << org[i] << ' ';
-    // }
-    // cout << '\n';
-
-    if (cur.size() != org.size())   return false;
-    For (i, cur.size()) {
-        if (cur[i] != org[i])   return false;
-    }
-    return true;
-}
-
-void make(int x, int y, vector<int>& curR, vector<int>& curC) {
-    curR.clear();
-    curC.clear();
-    int cnt;
-
-    cnt = 0;
-    For (i, r) {
-        if (bd[i][y]) {
-            if (cnt == 0) {
-                curC.push_back(1);
-            } else {
-                curC.back()++;
-            }
-            cnt++;
-        } else {
-            cnt = 0;
-        }
-    }
-
-    cnt = 0;
-    For (i, c) {
-        if (bd[x][i]) {
-            if (cnt == 0) {
-                curR.push_back(1);
-            } else {
-                curR.back()++;
-            }
-            cnt++;
-        } else {
-            cnt = 0;
-        }
-    }
-
-    //cout << "make ok\n";
-}
-
+int n, m;
+vector<int> an[10], bn[10];
+bool bd[10][10];
 int ans = 0;
-void go(int x, int y) {
-    if (x == r && y == 0) {
+
+vector<int> form(int x, int y, int px, int py) {
+    vector<int> org;
+    int pfx = 0;
+    while (x < n && y < m) {
+        if (!bd[x][y] && pfx != 0) {
+            org.push_back(pfx);
+            pfx = 0;
+        }
+        else if (bd[x][y]) {
+            pfx++;
+        }
+        x += px, y += py;
+    }
+    if (pfx != 0) org.push_back(pfx);
+    return org;
+}
+
+bool exact(int x, int y, int px, int py, vector<int>& cmp) {
+    vector<int> org = form(x, y, px, py);
+    if (org.size() != cmp.size())   return 0;
+    For (i, org.size()) {
+        if (org[i] != cmp[i])   return 0;
+    }
+    return 1;
+}
+
+bool legal(int x, int y, int px, int py, vector<int>& cmp) {
+    vector<int> org = form(x, y, px, py);
+    if (org.size() == 0)    return 1;
+    if (org.size() > cmp.size())    return 0;
+    For (i, org.size() - 1) {
+        if (org[i] != cmp[i])   return 0;
+    }
+    return org.back() <= cmp[org.size() - 1];
+}
+
+bool ok(int x, int y) {
+    if (!legal(x, 0, 0, 1, an[x]) || !legal(0, y, 1, 0, bn[y])) return 0;
+    if (x == n - 1 && !exact(0, y, 1, 0, bn[y]))    return 0;
+    if (y == m - 1 && !exact(x, 0, 0, 1, an[x]))    return 0;
+    return 1;
+
+}
+
+void dfs(int x, int y) {
+    //cout << x << ' ' << y << '\n';
+    if (x == n) {
+        // cout << "!!!\n";
+        // For (i, n) {
+        //     For (j, m) {
+        //         cout << bd[i][j] << ' ';
+        //     }
+        //     cout << '\n';
+        // }
+        // cout << '\n';
         ans++;
         return;
     }
 
-    // cout << "consider " << x << ", " << y << '\n';
-    // For (i, r) {
-    //     For (j, c) {
-    //         cout << bd[i][j] << ' ';
-    //     }
-    //     cout << '\n';
+    int nx = x, ny = y + 1;
+    if (ny == m) nx++, ny = 0;
+
+    //cout << "cur: " << x << ' ' << y << '\n';
+
+    if (ok(x, y)) {
+        //cout << x << ' ' << y << "ass: 0\n";
+        dfs(nx, ny);
+    }
+    // else {
+    //     cout << x << ' ' << y << " not ass 0\n";
     // }
-    // cout << '\n';
-
-    vector<int> curR, curC;
-
-    //cout << "consider " << x << ", " << y << " = 0\n";
-    make(x, y, curR, curC);
-    if (((x == r - 1)? match(curC, C[y]) : legal(curC, C[y])) && 
-        ((y == c - 1)? match(curR, R[x]) : legal(curR, R[x]))) {
-        //cout << "can put " << x << ", " << y << " = 0\n";
-        int a = x, b = y;
-        nxt(a, b);
-        go(a, b);
-    } else {
-        //cout << "cant put " << x << ", " << y << " = 0\n";
+    bd[x][y] = 1;
+    if (ok(x, y)) {
+        //cout << x << ' ' << y << " ass: 1\n";
+        dfs(nx, ny);
     }
-
-
-    //cout << "consider " << x << ", " << y << " = 1\n";
-    bd[x][y] = true;
-    make(x, y, curR, curC);
-    if (((x == r - 1)? match(curC, C[y]) : legal(curC, C[y])) && 
-        ((y == c - 1)? match(curR, R[x]) : legal(curR, R[x]))) {
-        //cout << "can put " << x << ", " << y << " = 1\n";
-        int a = x, b = y;
-        nxt(a, b);
-        go(a, b);
-    } else {
-        //cout << "cant put " << x << ", " << y << " = 1\n";
-    }
-    bd[x][y] = false;
+    // else {
+    //     cout << x << ' ' << y << " not ass 1\n";
+    // }
+    bd[x][y] = 0;
 }
 
 int main() {
-    // ios_base::sync_with_stdio(false);
-    // cin.tie(NULL);
-    // cout.tie(NULL);
+    //ios_base::sync_with_stdio(0); cin.tie(0);
 
-    int n;
-    cin >> r >> c;
-    For (i, r) {
-        cin >> n;
-        For (j, n) {
-            int tmp;
-            cin >> tmp;
-            R[i].push_back(tmp);
+    cin >> n >> m;
+    string s;
+    For (i, n) {
+        int k, d;
+        cin >> k;
+        For (j, k) {
+            cin >> d;
+            an[i].push_back(d);
         }
     }
-    For (i, c) {
-        cin >> n;
-        For (j, n) {
-            int tmp;
-            cin >> tmp;
-            C[i].push_back(tmp);
+    For (i, m) {
+        int k, d;
+        cin >> k;
+        For (j, k) {
+            cin >> d;
+            bn[i].push_back(d);
         }
     }
 
-    go(0, 0);
+    dfs(0, 0);
 
     cout << ans << '\n';
-    
+
     return 0;
 }
