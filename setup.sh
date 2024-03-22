@@ -14,7 +14,10 @@ case "$1" in
         ;;
     "compile" | "--compile" | "-c")
         echo "Compile"
-        g++ "$PROGRESS_DIR"/"$2".cpp -Wall
+        g++ "$PROGRESS_DIR"/"$2".cpp -Wall -o ./a.out
+        ;;
+    "giveup" | "--giveup" | "-g")
+        rm -f "$PROGRESS_DIR"/"$2".cpp
         ;;
     *)
         echo "Unknown command"
